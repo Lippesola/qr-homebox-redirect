@@ -21,4 +21,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Push the Docker image
-      run: docker push ghcr.io/lippesola/qr-homebox-redirect:${{ GITHUB_REF }}-$(date +%s)
+      run: docker push ghcr.io/lippesola/qr-homebox-redirect:${{ github.ref }}-$(date +%s)
