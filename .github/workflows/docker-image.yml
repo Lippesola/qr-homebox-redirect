@@ -14,11 +14,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Set image tag
+      run: echo "tag=${{ github.ref_name }}-$(date +%s)" >> $GITHUB_OUTPUT
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/lippesola/qr-homebox-redirect:${{ github.ref_name }}-$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/lippesola/qr-homebox-redirect:${{ needs.build.outputs.image_tag }}
     - name: Login to ghcr.io
       run: docker login ghcr.io -u lippesola -p $GITHUB_TOKEN
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Push the Docker image
-      run: docker push ghcr.io/lippesola/qr-homebox-redirect:${{ github.ref_name }}-$(date +%s)
+      run: docker push ghcr.io/lippesola/qr-homebox-redirect:${{ needs.build.outputs.image_tag }}
