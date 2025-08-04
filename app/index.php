@@ -1,3 +1,4 @@
 <?php
-
-echo "Hello, World!";
+//echo "index.php<br>";
+include("./search.php");
+?>
