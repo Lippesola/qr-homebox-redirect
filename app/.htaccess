@@ -1,8 +1,8 @@
 Options -Indexes 
 RewriteEngine on
 # Options FollowSymLinks
-RewriteBase /sola/inventar
-# RewriteBase /
+# RewriteBase /sola/inventar
+RewriteBase /
 RewriteRule code/([0-9]{12})$ code.php?code=$1&%{QUERY_STRING}
 # RewriteRule code/001000000014 code.php?code=$1&%{QUERY_STRING}
 
