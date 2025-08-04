@@ -1,9 +1,11 @@
 FROM php:8.4-apache
 
-# Install Git (für Composer) und Composer
+# Install Git und aktivieren von Apache mod_rewrite
 RUN apt-get update && apt-get install -y git \
+    && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
