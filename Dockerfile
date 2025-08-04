@@ -1,6 +1,9 @@
 FROM php:8.4-apache
 
-# Install Composer
+# Install Git (für Composer) und Composer
+RUN apt-get update && apt-get install -y git \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
