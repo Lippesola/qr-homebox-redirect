@@ -27,7 +27,7 @@ if (!isset($inventarQueryString)) {
 
 // =============================================
 
-echo "<form action=\"" . $PHP_SELF . "\" method=\"get\">
+echo "<form action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">
   <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryString."\">&nbsp;&nbsp;&nbsp;
   <input type=\"submit\" value=\"Suchen\">
 </form>
