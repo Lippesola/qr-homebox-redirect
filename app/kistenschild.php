@@ -161,6 +161,8 @@ if (sizeof($fullPathOfItem) > 0) {
 }
 if (sizeof($fullPathOfItem) >= 3) { 
    $lagerortText = "Lagerort ".$fullPathOfItem[sizeof($fullPathOfItem)-2]["name"];  
+} else {
+   $lagerortText = "";  
 }
 
 $kistenschild_titel = $responseObject["items"][0]["name"]; // $gegenstaende[$_GET["id"]]["inhalt_titel"];
