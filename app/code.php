@@ -46,6 +46,9 @@ if(preg_match("/001([0-9]{2})0000([0-9]{3})/",$code,$matches) ==true){
     else if ($matches[1]== "02") { 
          $inventarQueryString="P";   
     } 
+    else if ($matches[1]== "05") {
+         $inventarQueryString="G";
+    } 
     else if ($matches[1]== "07") {
          $inventarQueryString="R";
     } 
