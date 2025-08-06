@@ -607,7 +607,6 @@ $pdf->setJPEGQuality(90);
 
 
 
-
 // From binary data
 $pdf->Image('@'.$photoData, $fotoX, $fotoY, $fotoW, $fotoH, 'JPG', '', '', true, 300, '', false, false, 1, false, false, false);
 
@@ -651,6 +650,6 @@ $pdf->SetFont('helvetica', '', $defaultFontSize);
 
 
 //Close and output PDF document
-$pdf->Output('Kistenschild '. $kistennummer.".pdf", 'I');
+$pdf->Output('Kistenschild '. $kistennummer."_".time().".pdf", 'I');
 // mb_convert_encoding($kistennummer,"UTF-8","ISO-8859-1")
 ?>
