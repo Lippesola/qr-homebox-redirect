@@ -5,11 +5,19 @@ include(dirname(__FILE__)."/lib/inventar_lib.php");
 // echo "Get: ".print_r($_GET,true)."<br><br>";
 
 
+if (!isset($inventarQueryString)) {
+    $inventarQueryString= "";
+    $inventarQueryString= filter_input(INPUT_GET, 'q');
+}
+//echo "inventarQueryString = ".$inventarQueryString."<br><br>";
+
+// =============================================
+
 echo "<!doctype html>
 <html>
   <head>
     <meta charset=\"utf-8\">
-    <title>…</title>
+    <title>".$inventarQueryString." - Lippesola Inventar</title>
     <!-- <link rel=\"stylesheet\" href=\"abc.css\"> -->
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
     <style>   
@@ -19,13 +27,7 @@ echo "<!doctype html>
 
 // =============================================
 
-if (!isset($inventarQueryString)) {
-    $inventarQueryString= "";
-    $inventarQueryString= filter_input(INPUT_GET, 'q');
-}
-//echo "inventarQueryString = ".$inventarQueryString."<br><br>";
 
-// =============================================
 
 echo "<form action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">
   <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryString."\">&nbsp;&nbsp;&nbsp;
@@ -139,7 +141,7 @@ if (sizeof($responseObject["items"]) > 0) {
         echo "&bull;&nbsp;".implode("<br>&bull;&nbsp;", $path);
         echo "<br><br>";
 
-        if (preg_match("/(K-[0-9]{3})/",$item["name"], $matches))
+        if (preg_match("/([KG]-[0-9]{3})/",$item["name"], $matches))
         {  
           echo "Kistenschild:&nbsp;&nbsp;&nbsp;".
           "<a target=\"_blank\" href=\"kistenschild.php?q=".$matches[1]."\">Normal</a>&nbsp;&nbsp;&nbsp;". 
