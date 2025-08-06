@@ -300,17 +300,20 @@ $titelY=1;
 $titelW=210-2*$marginLeftRight;
 $titelH=8;
 
-$kistennummerFontSize=18;
-$kistennummerX=90;
-$kistennummerY=68;
-$kistennummerW=82;
-$kistennummerH=10;
+// Kistenummer steht nun im Titel bei Homebox. Daher hier keine Kistennummer mehr
+// $kistennummerFontSize=18;
+// $kistennummerX=90;
+// $kistennummerY=68;
+// $kistennummerW=82;
+// $kistennummerH=10;
 
+// Lageort kann nun wieter oben anfangen, wo sonst die Kistennummer war. Siehe oben
+// Alte Koordinaten noch als Kommentar gelassen
 $lageortFontSize=18;
 $lagerortX=90;
-$lagerortY=78;
+$lagerortY=68; // 78;
 $lagerortW=82;
-$lagerortH=28;
+$lagerortH=10; // 28;
 
 $qrCodeX=108;
 $qrCodeY=103;
@@ -357,17 +360,20 @@ if ($kistenschild_groesse==="w115h90") {
    $titelW=115-2*$marginLeftRight;
    $titelH=6;
 
-   $kistennummerFontSize=14;
-   $kistennummerX=53;
-   $kistennummerY=11;
-   $kistennummerW=42;
-   $kistennummerH=9;
+   // Kistenummer steht nun im Titel bei Homebox. Daher hier keine Kistennummer mehr
+   // $kistennummerFontSize=14;
+   // $kistennummerX=53;
+   // $kistennummerY=11;
+   // $kistennummerW=42;
+   // $kistennummerH=9;
 
+   // Lageort kann nun wieter oben anfangen, wo sonst die Kistennummer war. Siehe oben
+   // Alte Koordinaten noch als Kommentar gelassen
    $lageortFontSize=12;
    $lagerortX=53;
-   $lagerortY=20;
+   $lagerortY=11; // 20;
    $lagerortW=42;
-   $lagerortH=20;
+   $lagerortH=9; // 20;
 
    $qrCodeX=59;
    $qrCodeY=62;
@@ -454,11 +460,12 @@ $pdf->SetFont('helvetica', '', $defaultFontSize);
 
 
 // Name = Kistennummer
-$pdf->SetFont('helvetica', 'B', $kistennummerFontSize);
-$pdf->MultiCell($kistennummerW, $kistennummerH, $kistennummer , 
-$showBorders, 'C', false, $marginLeftRight, $kistennummerX, $kistennummerY, true, 0, false, true, 0, 'T', false);
-$pdf->SetFont('helvetica', '', $defaultFontSize);
-// mb_convert_encoding($kistennummer,"UTF-8","ISO-8859-1")
+// Kistennummer steht nun im Titel bei Homebox. Daher hier keine Kistennummer mehr
+// $pdf->SetFont('helvetica', 'B', $kistennummerFontSize);
+// $pdf->MultiCell($kistennummerW, $kistennummerH, $kistennummer , 
+// $showBorders, 'C', false, $marginLeftRight, $kistennummerX, $kistennummerY, true, 0, false, true, 0, 'T', false);
+// $pdf->SetFont('helvetica', '', $defaultFontSize);
+// // mb_convert_encoding($kistennummer,"UTF-8","ISO-8859-1")
 
 
 
