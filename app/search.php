@@ -52,13 +52,13 @@ curl_setopt_array($curl, [
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_SSL_VERIFYHOST => false,
-  CURLOPT_SSL_VERIFYPEER => false,
+  CURLOPT_SSL_VERIFYHOST => getenv('CURLOPT_SSL_VERIFYHOST'),
+  CURLOPT_SSL_VERIFYPEER => getenv('CURLOPT_SSL_VERIFYPEER'),
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => json_encode([
-    'password' => $homeboxPassword,
+    'password' => getenv('HOMEBOXPASSWORD'),
     'stayLoggedIn' => null,
-    'username' => $homeboxUsername
+    'username' => getenv('HOMEBOXUSERNAME')
   ]),
   CURLOPT_HTTPHEADER => [
     "Accept: application/json",
@@ -77,9 +77,9 @@ if ($err) {
 }
 
 $responseObject = json_decode($response, true);
-// print_r( $responseObject);
+//print_r( $responseObject);
 $token = $responseObject["token"];
-// echo "". $token ."<br><br>";
+//echo "Token: ". $token ."<br><br>";
 
 
 
@@ -90,14 +90,14 @@ $token = $responseObject["token"];
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => $apiUrl."items?q=".$inventarQueryString,
+  CURLOPT_URL => $apiUrl."entities?q=".$inventarQueryString,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_SSL_VERIFYHOST => false,
-  CURLOPT_SSL_VERIFYPEER => false,
+  CURLOPT_SSL_VERIFYHOST => getenv('CURLOPT_SSL_VERIFYHOST'),
+  CURLOPT_SSL_VERIFYPEER => getenv('CURLOPT_SSL_VERIFYPEER'),
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => [
     "Accept: application/json",
@@ -115,8 +115,10 @@ if ($err) {
   die();
 } 
 
+// echo "*".print_r( $response,true)."*<br><br>";
+
 $responseObject = json_decode($response, true);
-// echo print_r( $responseObject["items"],true)."<br>ybr>";
+// echo "+".print_r( $responseObject["items"],true)."+<br><br>";
 
 // ################################################
 
@@ -131,6 +133,7 @@ if (sizeof($responseObject["items"]) > 0) {
         }
 
         echo "<small>Pfad:</small><br>";  
+        // echo "+".$item["id"]."+<br><br>";
         $fullPathOfItem= GetFullPathOfItem($item["id"],$token);
         $path= array();
         foreach ($fullPathOfItem as $key => $value) {

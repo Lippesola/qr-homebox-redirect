@@ -42,13 +42,13 @@ curl_setopt_array($curl, [
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_SSL_VERIFYHOST => false,
-  CURLOPT_SSL_VERIFYPEER => false,
+  CURLOPT_SSL_VERIFYHOST => getenv('CURLOPT_SSL_VERIFYHOST'),
+  CURLOPT_SSL_VERIFYPEER => getenv('CURLOPT_SSL_VERIFYPEER'),
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => json_encode([
-    'password' => $homeboxPassword,
+    'password' => getenv('HOMEBOXPASSWORD'),
     'stayLoggedIn' => null,
-    'username' => $homeboxUsername
+    'username' => getenv('HOMEBOXUSERNAME')
   ]),
   CURLOPT_HTTPHEADER => [
     "Accept: application/json",
@@ -80,14 +80,14 @@ $token = $responseObject["token"];
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => $apiUrl."items?q=".$kistennummer,
+  CURLOPT_URL => $apiUrl."entities?q=".$kistennummer,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_SSL_VERIFYHOST => false,
-  CURLOPT_SSL_VERIFYPEER => false,
+  CURLOPT_SSL_VERIFYHOST => getenv('CURLOPT_SSL_VERIFYHOST'),
+  CURLOPT_SSL_VERIFYPEER => getenv('CURLOPT_SSL_VERIFYPEER'),
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => [
     "Accept: application/json",
@@ -125,12 +125,14 @@ $curl = curl_init();
 
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => $apiUrl."items/".$responseObject["items"][0]["id"]."/attachments/".$responseObject["items"][0]["imageId"],
+  CURLOPT_URL => $apiUrl."entities/".$responseObject["items"][0]["id"]."/attachments/".$responseObject["items"][0]["imageId"],
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_SSL_VERIFYHOST => getenv('CURLOPT_SSL_VERIFYHOST'),
+  CURLOPT_SSL_VERIFYPEER => getenv('CURLOPT_SSL_VERIFYPEER'),
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => [
     "Accept: application/octet-stream",
