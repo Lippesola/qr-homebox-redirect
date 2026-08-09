@@ -1,7 +1,11 @@
 FROM php:8.4-apache
 
-# Install Git und aktivieren von Apache mod_rewrite
-RUN apt-get update && apt-get install -y git \
+# Install Git, unzip + zip extension, enable Apache mod_rewrite
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        unzip \
+        libzip-dev \
+    && docker-php-ext-install zip \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
