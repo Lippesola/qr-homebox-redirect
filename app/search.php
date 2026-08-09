@@ -29,7 +29,7 @@ echo "<!doctype html>
 
 
 
-echo "<form action=\"" . ".$_SERVER['HTTP_HOST']." . "/search.php\" method=\"get\">
+echo "<form action=\"".$_SERVER['HTTP_HOST']."/search.php\" method=\"get\">
   <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryString."\">&nbsp;&nbsp;&nbsp;
   <input type=\"submit\" value=\"Suchen\">
 </form>
