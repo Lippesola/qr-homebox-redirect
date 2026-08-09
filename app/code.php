@@ -64,6 +64,6 @@ else {
 
 
 # echo "inventarQueryString = ".$inventarQueryString."<br>";
-
-include("./search.php");
+header("Location: https://".$_SERVER['HTTP_HOST']."/search.php?q=".$inventarQueryString);
+//include("./search.php");
 ?>

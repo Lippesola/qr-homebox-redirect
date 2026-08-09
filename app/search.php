@@ -29,7 +29,7 @@ echo "<!doctype html>
 
 
 
-echo "<form action=\"".$_SERVER['HTTP_HOST']."/search.php\" method=\"get\">
+echo "<form action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">
   <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryString."\">&nbsp;&nbsp;&nbsp;
   <input type=\"submit\" value=\"Suchen\">
 </form>
@@ -147,8 +147,8 @@ if (sizeof($responseObject["items"]) > 0) {
         if (preg_match("/([KG]-[0-9]{3})/",$item["name"], $matches))
         {  
           echo "Kistenschild:&nbsp;&nbsp;&nbsp;".
-          "<a target=\"_blank\" href=\"".$_SERVER['HTTP_HOST']."/kistenschild.php?q=".$matches[1]."\">Normal</a>&nbsp;&nbsp;&nbsp;". 
-          "<a target=\"_blank\" href=\"".$_SERVER['HTTP_HOST']."/kistenschild.php?q=".$matches[1]."&kistenschild_groesse=w115h90\">Klein</a><br>";
+          "<a target=\"_blank\" href=\"kistenschild.php?q=".$matches[1]."\">Normal</a>&nbsp;&nbsp;&nbsp;". 
+          "<a target=\"_blank\" href=\"kistenschild.php?q=".$matches[1]."&kistenschild_groesse=w115h90\">Klein</a><br>";
         }
         
         echo "<br><br>
