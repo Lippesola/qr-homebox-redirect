@@ -1,4 +1,4 @@
-FROM php:8.4.26-apache-trixy
+FROM php:8.4.27-apache-trixy
 
 # Install Git, unzip + zip extension, enable Apache mod_rewrite
 RUN apt-get update && apt-get install -y --no-install-recommends \
