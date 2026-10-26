@@ -1,4 +1,4 @@
-FROM php:8.4.27-apache-trixie
+FROM php:8.5.11-apache-trixie
 
 # Install Git, unzip + zip extension, enable Apache mod_rewrite
 RUN apt-get update && apt-get install -y --no-install-recommends \
