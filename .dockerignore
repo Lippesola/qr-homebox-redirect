@@ -1,0 +1,17 @@
+# Installed fresh by composer in the image
+vendor
+app/vendor
+
+# Secrets and local files
+*.env
+app/lib/homebox_login.php
+.vscode
+*.code-workspace
+
+# Not needed in the build
+.git
+.github
+Dockerfile
+.dockerignore
+README.md
+renovate.json
