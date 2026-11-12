@@ -29,7 +29,6 @@ function GetFullPathOfItem($itemId, $apiToken): array
   $response = curl_exec($curl);
   $err = curl_error($curl);
 
-  curl_close($curl);
 
   $fullPathofItem=array();
   if ($err) {

@@ -7,8 +7,10 @@ include(dirname(__FILE__)."/lib/inventar_lib.php");
 
 if (!isset($inventarQueryString)) {
     $inventarQueryString= "";
-    $inventarQueryString= filter_input(INPUT_GET, 'q');
+    $inventarQueryString= filter_input(INPUT_GET, 'q') ?? '';
 }
+// Escaped for HTML output
+$inventarQueryStringHtml = htmlspecialchars($inventarQueryString);
 //echo "inventarQueryString = ".$inventarQueryString."<br><br>";
 
 // =============================================
@@ -17,7 +19,7 @@ echo "<!doctype html>
 <html>
   <head>
     <meta charset=\"utf-8\">
-    <title>".$inventarQueryString." - Lippesola Inventar</title>
+    <title>".$inventarQueryStringHtml." - Lippesola Inventar</title>
     <!-- <link rel=\"stylesheet\" href=\"abc.css\"> -->
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
     <style>   
@@ -29,8 +31,8 @@ echo "<!doctype html>
 
 
 
-echo "<form action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">
-  <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryString."\">&nbsp;&nbsp;&nbsp;
+echo "<form action=\"" . htmlspecialchars($_SERVER['PHP_SELF']) . "\" method=\"get\">
+  <input type=\"text\" id=\"q\" name=\"q\" value=\"".$inventarQueryStringHtml."\">&nbsp;&nbsp;&nbsp;
   <input type=\"submit\" value=\"Suchen\">
 </form>
 <hr>
@@ -69,7 +71,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);
 
 if ($err) {
   echo "cURL Error #:" . $err;
@@ -108,7 +109,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);
 
 if ($err) {
   echo "cURL Error #:" . $err;
