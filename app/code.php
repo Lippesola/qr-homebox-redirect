@@ -33,7 +33,7 @@ AA=08 ? W-xx Wechselbrücke
 
 
 $code= "";
-$code= filter_input(INPUT_GET, 'code');
+$code= filter_input(INPUT_GET, 'code') ?? '';
 #echo "*".$code."+<br>";
 
 $inventarQueryString="";

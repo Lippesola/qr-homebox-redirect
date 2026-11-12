@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL & ~E_NOTICE & E_DEPRECATED);
-ini_set("display_errors", "1");
 
 include(dirname(__FILE__)."/lib/inventar_lib.php");
 
@@ -59,7 +57,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);
 
 if ($err) {
   echo "cURL Error #:" . $err;
@@ -98,7 +95,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);
 
 if ($err) {
   echo "cURL Error #:" . $err;
@@ -143,7 +139,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);
 
 $foto="";
 
