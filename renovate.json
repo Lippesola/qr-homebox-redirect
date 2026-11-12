@@ -15,6 +15,13 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest", "digest"],
       "automerge": true,
       "ignoreTests": true
+    },
+    {
+      "description": "PHP image: only patch and digest updates, no new minor/major PHP versions",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["php"],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
     }
   ],
   "lockFileMaintenance": {
