@@ -1,31 +1,21 @@
+# Install PHP dependencies in a separate stage, so git/unzip/composer stay out of the final image
+FROM composer:2 AS vendor
+WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
 FROM php:8.4.27-apache-trixie
 
-# Install Git, unzip + zip extension, enable Apache mod_rewrite
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        git \
-        unzip \
-        libzip-dev \
-    && docker-php-ext-install zip \
-    && a2enmod rewrite \
-    && rm -rf /var/lib/apt/lists/*
+# Production PHP settings (no error output to visitors), mod_rewrite for .htaccess
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && a2enmod rewrite
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files
-COPY composer.json composer.lock* ./
+# Files stay owned by root: Apache workers (www-data) only need to read them
+COPY --from=vendor /app/vendor ./vendor
+COPY app/ ./
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy PHP files into Apache document root
-COPY app/ /var/www/html/
-
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html
-
-# Expose port 80
 EXPOSE 80
+
+LABEL org.opencontainers.image.source="https://github.com/Lippesola/qr-homebox-redirect"
