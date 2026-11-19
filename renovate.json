@@ -17,6 +17,12 @@
       "ignoreTests": true
     },
     {
+      "description": "PHP image: offer patches separately, otherwise they are folded into the (disabled) minor update",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["php"],
+      "separateMinorPatch": true
+    },
+    {
       "description": "PHP image: only patch and digest updates, no new minor/major PHP versions",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["php"],
