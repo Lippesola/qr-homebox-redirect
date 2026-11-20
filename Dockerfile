@@ -4,7 +4,7 @@ WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
-FROM php:8.5.13-apache-trixie@sha256:f0c9ecc7b9e805cd37e1d9f385c78e8edd7766f62bce280b8c34370c3e8e6697
+FROM php:8.5.13-apache-trixie@sha256:0a785eab8b7eb4836f9c6093771c8ea15ff8ba7269444f3da70a1d33d15fe664
 
 # Production PHP settings (no error output to visitors), mod_rewrite for .htaccess
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
