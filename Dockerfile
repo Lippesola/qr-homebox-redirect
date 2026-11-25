@@ -1,5 +1,5 @@
 # Install PHP dependencies in a separate stage, so git/unzip/composer stay out of the final image
-FROM composer:2@sha256:30621647c7caf81d0a173f42b5e46ab7fed94d5a0e19e7259429517bb9f9d342 AS vendor
+FROM composer:2@sha256:0049ce90b432795bf413a738b073963ada1a689e1a8708104684baafe94586ec AS vendor
 WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
